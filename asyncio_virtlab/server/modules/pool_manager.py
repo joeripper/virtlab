@@ -43,7 +43,7 @@ class Instance:
         port = self.vnc_port
 
         program = 'qemu-system-x86_64'
-        command = f'-m 1024 -boot d -vga vmware -enable-kvm -vnc 0.0.0.0:{port} -hda {self.qemu_dir}{name}.qcow2'.split(' ')
+        command = f'-enable-kvm -m 1024 -smp 2 -vga vmware -hda {self.qemu_dir}{name}.qcow2 -vnc 0.0.0.0:{port}'.split(' ')
 
         process = await asyncio.create_subprocess_exec(
             program,

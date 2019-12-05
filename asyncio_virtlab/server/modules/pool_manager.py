@@ -86,7 +86,7 @@ class Instance:
                                 earlest_result = await f
 
                     except asyncio.TimeoutError:
-                        print(self.id, self.ready, self.in_use, self.vnc_port)
+                        pass
 
                     if earlest_result != None:
                         print(f'{self.id} is dead')

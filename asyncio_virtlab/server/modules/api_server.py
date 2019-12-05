@@ -11,6 +11,7 @@ class ApiServer:
     def __init__(self, pool_manager, config):
 
         self.config = config
+        self.ip_addr = self.config['api_ip_addr']
         self.tcp_port = int(self.config['api_server_port'])
 
         self.pool_manager = pool_manager
@@ -56,6 +57,6 @@ class ApiServer:
         app = await self.app()
         runner = web.AppRunner(app)
         await runner.setup()
-        site = web.TCPSite(runner, 'localhost', self.tcp_port)
+        site = web.TCPSite(runner, self.ip_addr, self.tcp_port)
         await site.start()
         print('site is running')
